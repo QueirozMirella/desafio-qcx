@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  http_basic_authenticate_with name: "xxx", password: "xxx"
 
     def index
       if params[:issue_id]

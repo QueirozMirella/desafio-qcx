@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
-    before_action :set_issue, only: [:show]
+  http_basic_authenticate_with name: "xxx", password: "xxx"
+  before_action :set_issue, only: [:show]
   
     def index
       @issues = Issue.all
