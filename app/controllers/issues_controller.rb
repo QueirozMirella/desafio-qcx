@@ -1,5 +1,7 @@
 class IssuesController < ApplicationController
+  include ActionController::HttpAuthentication::Basic::ControllerMethods
   http_basic_authenticate_with name: "xxx", password: "xxx"
+  
   before_action :set_issue, only: [:show]
   
     def index
