@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :events, only: [:create, :index]
-  resources :issues, only: [:index, :show]
+  resources :events, only: [:create]
+  resources :issues, only: [:index, :show] do
+    resources :events, only: [:index]
+  end
 end

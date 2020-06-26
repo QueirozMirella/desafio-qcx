@@ -1,0 +1,684 @@
+Started GET "/" for ::1 at 2020-06-26 15:10:33 -0300
+  [1m[35m (257.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 40.3ms | Allocations: 470)
+Completed 200 OK in 130ms (Views: 72.1ms | ActiveRecord: 0.0ms | Allocations: 2544)
+
+
+Started GET "/" for ::1 at 2020-06-26 15:12:52 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 13.3ms | Allocations: 191)
+Completed 200 OK in 17ms (Views: 14.9ms | ActiveRecord: 0.0ms | Allocations: 712)
+
+
+Started GET "/events" for ::1 at 2020-06-26 15:15:45 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/events"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/issues/0/events" for ::1 at 2020-06-26 15:16:04 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"0"}
+  [1m[36mIssue Load (120.3ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 0], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 604ms (ActiveRecord: 382.1ms | Allocations: 4621)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:5:in `index'
+Started GET "/issues/0/events" for ::1 at 2020-06-26 15:24:31 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"0"}
+  [1m[36mIssue Load (2.1ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 0], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 2.8ms | Allocations: 1400)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:5:in `index'
+Started GET "/issues/1/events" for ::1 at 2020-06-26 15:24:35 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"1"}
+  [1m[36mIssue Load (0.9ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.9ms | Allocations: 1314)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:5:in `index'
+Started GET "/issues/2/events" for ::1 at 2020-06-26 15:24:39 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"2"}
+  [1m[36mIssue Load (0.4ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.4ms | Allocations: 1299)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:5:in `index'
+Started GET "/" for ::1 at 2020-06-26 15:34:50 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.3ms | Allocations: 7)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.0ms | Allocations: 224)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 15:35:01 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (1.1ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:16:in `set_issue'
+Completed 404 Not Found in 1522ms (Views: 42.3ms | ActiveRecord: 1383.6ms | Allocations: 1238)
+
+
+Started GET "/issues/1/events" for ::1 at 2020-06-26 15:35:18 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"1"}
+  [1m[36mIssue Load (0.4ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.4ms | Allocations: 1317)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:5:in `index'
+Started GET "/issues/1/event" for ::1 at 2020-06-26 15:35:23 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/issues/1/event"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/issues" for ::1 at 2020-06-26 15:35:36 -0300
+Processing by IssuesController#index as HTML
+  [1m[36mIssue Load (2.1ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+  ↳ app/controllers/issues_controller.rb:6:in `index'
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 2.1ms | Allocations: 835)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 15:35:41 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (0.7ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:16:in `set_issue'
+Completed 404 Not Found in 7ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 947)
+
+
+Started GET "/events" for ::1 at 2020-06-26 15:35:46 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/events"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/routes" for ::1 at 2020-06-26 15:36:05 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/issues/1/events" for ::1 at 2020-06-26 15:36:59 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"1"}
+  [1m[36mIssue Load (0.5ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.5ms | Allocations: 1300)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:5:in `index'
+Started GET "/" for ::1 at 2020-06-26 15:50:58 -0300
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 34.8ms | Allocations: 201)
+Completed 200 OK in 55ms (Views: 37.9ms | ActiveRecord: 0.0ms | Allocations: 861)
+
+
+Started GET "/issues" for ::1 at 2020-06-26 15:51:06 -0300
+  
+NoMethodError (undefined method `http_basic_authenticate_with' for IssuesController:Class):
+  
+app/controllers/issues_controller.rb:2:in `<class:IssuesController>'
+app/controllers/issues_controller.rb:1:in `<main>'
+Started GET "/issues" for ::1 at 2020-06-26 15:53:13 -0300
+Processing by IssuesController#index as HTML
+  [1m[36mIssue Load (1.4ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+  ↳ app/controllers/issues_controller.rb:7:in `index'
+Completed 200 OK in 299ms (Views: 5.5ms | ActiveRecord: 112.1ms | Allocations: 2945)
+
+
+Started GET "/events" for ::1 at 2020-06-26 15:55:39 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/events"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (137.7ms)[0m  [1m[35mCREATE DATABASE "octo_event_development" ENCODING = 'unicode'[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE DATABASE "octo_event_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "octo_event_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "octo_event_test" ENCODING = 'unicode'[0m
+  [1m[35m (74.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2464455042977565330)[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (104.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(2464455042977565330)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/events" for ::1 at 2020-06-26 16:01:31 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/events"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/events" for ::1 at 2020-06-26 16:39:36 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/events"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/events" for ::1 at 2020-06-26 16:40:19 -0300
+  
+NoMethodError (undefined method `http_basic_authenticate_with' for EventsController:Class):
+  
+app/controllers/events_controller.rb:2:in `<class:EventsController>'
+app/controllers/events_controller.rb:1:in `<main>'
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:40:38 -0300
+  
+NoMethodError (undefined method `http_basic_authenticate_with' for EventsController:Class):
+  
+app/controllers/events_controller.rb:2:in `<class:EventsController>'
+app/controllers/events_controller.rb:1:in `<main>'
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:50:52 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"1"}
+  [1m[36mIssue Load (31.7ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:6:in `index'
+Completed 500 Internal Server Error in 485ms (ActiveRecord: 105.3ms | Allocations: 5292)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:6:in `index'
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:54:01 -0300
+  
+SyntaxError (/home/mirella/Área de Trabalho/octo-events/Octo-Events-master/octo-event/app/controllers/events_controller.rb:2: syntax error, unexpected tIDENTIFIER, expecting end
+...icate_with name: "xxx" password: "xxx"
+...                       ^~~~~~~~):
+  
+app/controllers/events_controller.rb:2: syntax error, unexpected tIDENTIFIER, expecting end
+app/controllers/events_controller.rb:2: syntax error, unexpected tIDENTIFIER, expecting end
+app/controllers/events_controller.rb:2: syntax error, unexpected tIDENTIFIER, expecting end
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:54:11 -0300
+  
+NoMethodError (undefined method `http_basic_authenticate_with' for EventsController:Class):
+  
+app/controllers/events_controller.rb:2:in `<class:EventsController>'
+app/controllers/events_controller.rb:1:in `<main>'
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:56:16 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"1"}
+Filter chain halted as #<Proc:0x00007f25e54fcc68@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 90)
+
+
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:56:22 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"1"}
+  [1m[36mIssue Load (0.6ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 111ms (ActiveRecord: 3.9ms | Allocations: 2983)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:7:in `index'
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:57:38 -0300
+  
+SyntaxError (/home/mirella/Área de Trabalho/octo-events/Octo-Events-master/octo-event/config/routes.rb:5: syntax error, unexpected end, expecting end-of-input):
+  
+config/routes.rb:5: syntax error, unexpected end, expecting end-of-input
+config/routes.rb:5: syntax error, unexpected end, expecting end-of-input
+config/routes.rb:5: syntax error, unexpected end, expecting end-of-input
+Started GET "/issues/1/events" for ::1 at 2020-06-26 16:57:50 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/issues/1/events"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/issues" for ::1 at 2020-06-26 16:58:00 -0300
+Processing by IssuesController#index as HTML
+Filter chain halted as #<Proc:0x00007f25dc443ac8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/issues" for ::1 at 2020-06-26 16:58:00 -0300
+Processing by IssuesController#index as HTML
+  [1m[36mIssue Load (0.9ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+  ↳ app/controllers/issues_controller.rb:9:in `index'
+Completed 200 OK in 35ms (Views: 19.5ms | ActiveRecord: 5.0ms | Allocations: 2489)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 16:58:03 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (0.9ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:19:in `set_issue'
+Completed 404 Not Found in 159ms (Views: 0.4ms | ActiveRecord: 135.9ms | Allocations: 1169)
+
+
+Started GET "/events" for ::1 at 2020-06-26 16:58:10 -0300
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (159.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:12:in `index'
+Completed 200 OK in 303ms (Views: 5.4ms | ActiveRecord: 162.8ms | Allocations: 2740)
+
+
+Started GET "/events" for ::1 at 2020-06-26 17:00:45 -0300
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:12:in `index'
+Completed 200 OK in 30ms (Views: 6.1ms | ActiveRecord: 6.7ms | Allocations: 4185)
+
+
+Started GET "/issues" for ::1 at 2020-06-26 17:00:57 -0300
+Processing by IssuesController#index as HTML
+  [1m[36mIssue Load (0.5ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+  ↳ app/controllers/issues_controller.rb:9:in `index'
+Completed 200 OK in 11ms (Views: 2.1ms | ActiveRecord: 1.7ms | Allocations: 2634)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 17:01:03 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (0.4ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:19:in `set_issue'
+Completed 404 Not Found in 13ms (Views: 0.4ms | ActiveRecord: 8.0ms | Allocations: 1526)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 17:01:25 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (0.4ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:19:in `set_issue'
+Completed 404 Not Found in 14ms (Views: 0.2ms | ActiveRecord: 5.1ms | Allocations: 2686)
+
+
+Started GET "/issues/1/events" for ::1 at 2020-06-26 17:01:28 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"1"}
+  [1m[36mIssue Load (0.4ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.4ms | Allocations: 1430)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:7:in `index'
+Started GET "/issues/2/events" for ::1 at 2020-06-26 17:01:45 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"2"}
+  [1m[36mIssue Load (3.8ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 3.8ms | Allocations: 1369)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:7:in `index'
+Started GET "/issues/0/events" for ::1 at 2020-06-26 17:01:52 -0300
+Processing by EventsController#index as HTML
+  Parameters: {"issue_id"=>"0"}
+  [1m[36mIssue Load (0.8ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 0], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.8ms | Allocations: 1350)
+
+
+  
+NoMethodError (undefined method `events' for nil:NilClass):
+  
+app/controllers/events_controller.rb:7:in `index'
+Started GET "/issues" for ::1 at 2020-06-26 17:04:16 -0300
+Processing by IssuesController#index as HTML
+  [1m[36mIssue Load (0.5ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+  ↳ app/controllers/issues_controller.rb:9:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.5ms | Allocations: 873)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 17:04:22 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (1.5ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:19:in `set_issue'
+Completed 404 Not Found in 12ms (Views: 0.6ms | ActiveRecord: 1.5ms | Allocations: 968)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 17:04:31 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (0.7ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:19:in `set_issue'
+Completed 404 Not Found in 4ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 962)
+
+
+Started GET "/issues/1" for ::1 at 2020-06-26 17:04:32 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (1.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:19:in `set_issue'
+Completed 404 Not Found in 7ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 962)
+
+
+Started GET "/issues/" for ::1 at 2020-06-26 17:04:35 -0300
+Processing by IssuesController#index as HTML
+  [1m[36mIssue Load (0.9ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+  ↳ app/controllers/issues_controller.rb:9:in `index'
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.9ms | Allocations: 863)
+
+
+Started GET "/" for ::1 at 2020-06-26 17:04:39 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 45.8ms | Allocations: 195)
+Completed 200 OK in 140ms (Views: 48.8ms | ActiveRecord: 0.0ms | Allocations: 848)
+
+
+Started GET "/events" for ::1 at 2020-06-26 17:04:44 -0300
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:12:in `index'
+Completed 200 OK in 8ms (Views: 3.9ms | ActiveRecord: 2.1ms | Allocations: 2035)
+
+
+  [1m[35m (58.9ms)[0m  [1m[35mCREATE DATABASE "octo_event_development" ENCODING = 'unicode'[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE DATABASE "octo_event_test" ENCODING = 'unicode'[0m
+  [1m[35m (13.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2464455042977565330)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(2464455042977565330)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-06-26 17:14:01 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 377.5ms | Allocations: 307)
+Completed 200 OK in 380ms (Views: 379.3ms | ActiveRecord: 0.0ms | Allocations: 1522)
+
+
+Started GET "/issues" for ::1 at 2020-06-26 17:14:12 -0300
+Processing by IssuesController#index as HTML
+  [1m[36mIssue Load (1.8ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+  ↳ app/controllers/issues_controller.rb:9:in `index'
+Completed 200 OK in 16ms (Views: 5.2ms | ActiveRecord: 4.8ms | Allocations: 4536)
+
+
+Started GET "/events" for ::1 at 2020-06-26 17:14:19 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/events"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/issues/1" for ::1 at 2020-06-26 17:14:34 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIssue Load (0.5ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/issues_controller.rb:19:in `set_issue'
+Completed 404 Not Found in 28ms (Views: 0.2ms | ActiveRecord: 4.6ms | Allocations: 3177)
+
+

@@ -1,0 +1,970 @@
+  [1m[35m (88.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (14.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (291.5ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "issues" DISABLE TRIGGER ALL[0m
+  [1m[35m (55.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (431.6ms)[0m  [1m[34m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE
+            tablename !~ '_prt_' AND
+             tablename <> 'schema_migrations'  AND tablename <> 'ar_internal_metadata'  AND
+            schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35m (217.7ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'octo_event_test'[0m
+  [1m[35m (1970.1ms)[0m  [1m[35mTRUNCATE TABLE "public"."events", "public"."issues" RESTART IDENTITY CASCADE;[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "issues" ENABLE TRIGGER ALL[0m
+  [1m[35m (48.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIssue Load (0.3ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 0], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIssue Load (0.6ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 4], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (110.8ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 4], ["title", "Libero possimus quam et."], ["github_id", "llrss"], ["created_at", "2020-06-26 20:07:09.280913"], ["updated_at", "2020-06-26 20:07:09.280913"]]
+  [1m[36mEvent Create (22.8ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "create"], ["issue_id", 1], ["created_at", "2020-06-26 20:07:09.396129"], ["updated_at", "2020-06-26 20:07:09.396129"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+Started POST "/events" for 127.0.0.1 at 2020-06-26 17:07:09 -0300
+Processing by EventsController#create as JSON
+  Parameters: {"issue"=>{"number"=>"3", "title"=>nil}, "event"=>{"action"=>"create"}}
+Filter chain halted as #<Proc:0x00005561170200a8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 92)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.816368"], ["updated_at", "2020-06-26 20:07:09.816368"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "nemo"], ["issue_id", 2], ["created_at", "2020-06-26 20:07:09.819656"], ["updated_at", "2020-06-26 20:07:09.819656"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/0/events" for 127.0.0.1 at 2020-06-26 17:07:09 -0300
+Processing by EventsController#index as JSON
+  Parameters: {"issue_id"=>"0"}
+Filter chain halted as #<Proc:0x00005561170200a8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 48)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.833472"], ["updated_at", "2020-06-26 20:07:09.833472"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "nemo"], ["issue_id", 3], ["created_at", "2020-06-26 20:07:09.836034"], ["updated_at", "2020-06-26 20:07:09.836034"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/0/events" for 127.0.0.1 at 2020-06-26 17:07:09 -0300
+Processing by EventsController#index as JSON
+  Parameters: {"issue_id"=>"0"}
+Filter chain halted as #<Proc:0x00005561170200a8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.848669"], ["updated_at", "2020-06-26 20:07:09.848669"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.850950"], ["updated_at", "2020-06-26 20:07:09.850950"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.852246"], ["updated_at", "2020-06-26 20:07:09.852246"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.854185"], ["updated_at", "2020-06-26 20:07:09.854185"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.856895"], ["updated_at", "2020-06-26 20:07:09.856895"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (1.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.860371"], ["updated_at", "2020-06-26 20:07:09.860371"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.864211"], ["updated_at", "2020-06-26 20:07:09.864211"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.867928"], ["updated_at", "2020-06-26 20:07:09.867928"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.871216"], ["updated_at", "2020-06-26 20:07:09.871216"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.873884"], ["updated_at", "2020-06-26 20:07:09.873884"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues" for 127.0.0.1 at 2020-06-26 17:07:09 -0300
+Processing by IssuesController#index as JSON
+Filter chain halted as #<Proc:0x000055611705bf18@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 85)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (30.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.885645"], ["updated_at", "2020-06-26 20:07:09.885645"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.919266"], ["updated_at", "2020-06-26 20:07:09.919266"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.922427"], ["updated_at", "2020-06-26 20:07:09.922427"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.924684"], ["updated_at", "2020-06-26 20:07:09.924684"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.926937"], ["updated_at", "2020-06-26 20:07:09.926937"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.929256"], ["updated_at", "2020-06-26 20:07:09.929256"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.931650"], ["updated_at", "2020-06-26 20:07:09.931650"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.933821"], ["updated_at", "2020-06-26 20:07:09.933821"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.935775"], ["updated_at", "2020-06-26 20:07:09.935775"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:09.937380"], ["updated_at", "2020-06-26 20:07:09.937380"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues" for 127.0.0.1 at 2020-06-26 17:07:09 -0300
+Processing by IssuesController#index as JSON
+Filter chain halted as #<Proc:0x000055611705bf18@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (87.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.7ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.040205"], ["updated_at", "2020-06-26 20:07:10.040205"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (29.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.046182"], ["updated_at", "2020-06-26 20:07:10.046182"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (1.0ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.081665"], ["updated_at", "2020-06-26 20:07:10.081665"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.9ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.087786"], ["updated_at", "2020-06-26 20:07:10.087786"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.7ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.093211"], ["updated_at", "2020-06-26 20:07:10.093211"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.6ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.097879"], ["updated_at", "2020-06-26 20:07:10.097879"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.102242"], ["updated_at", "2020-06-26 20:07:10.102242"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.104743"], ["updated_at", "2020-06-26 20:07:10.104743"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.107137"], ["updated_at", "2020-06-26 20:07:10.107137"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.109393"], ["updated_at", "2020-06-26 20:07:10.109393"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/24" for 127.0.0.1 at 2020-06-26 17:07:10 -0300
+Processing by IssuesController#show as JSON
+  Parameters: {"id"=>"24"}
+Filter chain halted as #<Proc:0x000055611705bf18@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.119241"], ["updated_at", "2020-06-26 20:07:10.119241"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.120911"], ["updated_at", "2020-06-26 20:07:10.120911"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.122115"], ["updated_at", "2020-06-26 20:07:10.122115"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.123410"], ["updated_at", "2020-06-26 20:07:10.123410"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.124651"], ["updated_at", "2020-06-26 20:07:10.124651"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.125898"], ["updated_at", "2020-06-26 20:07:10.125898"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.127393"], ["updated_at", "2020-06-26 20:07:10.127393"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.128842"], ["updated_at", "2020-06-26 20:07:10.128842"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.130529"], ["updated_at", "2020-06-26 20:07:10.130529"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.132680"], ["updated_at", "2020-06-26 20:07:10.132680"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/34" for 127.0.0.1 at 2020-06-26 17:07:10 -0300
+Processing by IssuesController#show as JSON
+  Parameters: {"id"=>"34"}
+Filter chain halted as #<Proc:0x000055611705bf18@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (6.8ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.152199"], ["updated_at", "2020-06-26 20:07:10.152199"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.155128"], ["updated_at", "2020-06-26 20:07:10.155128"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.157447"], ["updated_at", "2020-06-26 20:07:10.157447"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.159576"], ["updated_at", "2020-06-26 20:07:10.159576"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.161665"], ["updated_at", "2020-06-26 20:07:10.161665"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.163451"], ["updated_at", "2020-06-26 20:07:10.163451"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.166184"], ["updated_at", "2020-06-26 20:07:10.166184"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.168248"], ["updated_at", "2020-06-26 20:07:10.168248"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.169868"], ["updated_at", "2020-06-26 20:07:10.169868"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.171960"], ["updated_at", "2020-06-26 20:07:10.171960"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/-1" for 127.0.0.1 at 2020-06-26 17:07:10 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"-1"}
+Filter chain halted as #<Proc:0x000055611705bf18@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.7ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.209635"], ["updated_at", "2020-06-26 20:07:10.209635"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.8ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.214873"], ["updated_at", "2020-06-26 20:07:10.214873"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.7ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.221468"], ["updated_at", "2020-06-26 20:07:10.221468"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.7ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.226961"], ["updated_at", "2020-06-26 20:07:10.226961"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.9ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.232433"], ["updated_at", "2020-06-26 20:07:10.232433"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.6ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.238097"], ["updated_at", "2020-06-26 20:07:10.238097"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.6ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.242598"], ["updated_at", "2020-06-26 20:07:10.242598"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.246344"], ["updated_at", "2020-06-26 20:07:10.246344"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.249751"], ["updated_at", "2020-06-26 20:07:10.249751"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 0], ["title", "Provident doloribus illo et."], ["github_id", "r31m6"], ["created_at", "2020-06-26 20:07:10.252662"], ["updated_at", "2020-06-26 20:07:10.252662"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/-1" for 127.0.0.1 at 2020-06-26 17:07:10 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"-1"}
+Filter chain halted as #<Proc:0x000055611705bf18@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "issues" DISABLE TRIGGER ALL[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.8ms)[0m  [1m[34m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE
+            tablename !~ '_prt_' AND
+             tablename <> 'schema_migrations'  AND tablename <> 'ar_internal_metadata'  AND
+            schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35m (1.0ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'octo_event_test'[0m
+  [1m[35m (198.2ms)[0m  [1m[35mTRUNCATE TABLE "public"."events", "public"."issues" RESTART IDENTITY CASCADE;[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (20.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "issues" ENABLE TRIGGER ALL[0m
+  [1m[35m (18.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.031310"], ["updated_at", "2020-06-26 20:11:44.031310"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mEvent Create (0.7ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "quaerat"], ["issue_id", 1], ["created_at", "2020-06-26 20:11:44.033522"], ["updated_at", "2020-06-26 20:11:44.033522"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/8/events" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by EventsController#index as JSON
+  Parameters: {"issue_id"=>"8"}
+Filter chain halted as #<Proc:0x000055ac146fdc98@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 92)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.046451"], ["updated_at", "2020-06-26 20:11:44.046451"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "quaerat"], ["issue_id", 2], ["created_at", "2020-06-26 20:11:44.047944"], ["updated_at", "2020-06-26 20:11:44.047944"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/8/events" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by EventsController#index as JSON
+  Parameters: {"issue_id"=>"8"}
+Filter chain halted as #<Proc:0x000055ac146fdc98@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/events" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by EventsController#create as JSON
+  Parameters: {"issue"=>{"number"=>"4", "title"=>nil}, "event"=>{"action"=>"create"}}
+Filter chain halted as #<Proc:0x000055ac146fdc98@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 48)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 9], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 9], ["title", "Nihil et accusamus omnis."], ["github_id", "cy1pu"], ["created_at", "2020-06-26 20:11:44.074964"], ["updated_at", "2020-06-26 20:11:44.074964"]]
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "create"], ["issue_id", 3], ["created_at", "2020-06-26 20:11:44.076618"], ["updated_at", "2020-06-26 20:11:44.076618"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 6], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.102446"], ["updated_at", "2020-06-26 20:11:44.102446"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.104620"], ["updated_at", "2020-06-26 20:11:44.104620"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.106500"], ["updated_at", "2020-06-26 20:11:44.106500"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.108834"], ["updated_at", "2020-06-26 20:11:44.108834"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.110906"], ["updated_at", "2020-06-26 20:11:44.110906"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (1.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.113276"], ["updated_at", "2020-06-26 20:11:44.113276"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.117248"], ["updated_at", "2020-06-26 20:11:44.117248"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.119412"], ["updated_at", "2020-06-26 20:11:44.119412"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.121841"], ["updated_at", "2020-06-26 20:11:44.121841"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.123912"], ["updated_at", "2020-06-26 20:11:44.123912"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by IssuesController#index as JSON
+Filter chain halted as #<Proc:0x000055ac14726aa8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 85)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.133543"], ["updated_at", "2020-06-26 20:11:44.133543"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.135404"], ["updated_at", "2020-06-26 20:11:44.135404"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.137054"], ["updated_at", "2020-06-26 20:11:44.137054"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.138678"], ["updated_at", "2020-06-26 20:11:44.138678"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.140514"], ["updated_at", "2020-06-26 20:11:44.140514"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.142824"], ["updated_at", "2020-06-26 20:11:44.142824"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.144790"], ["updated_at", "2020-06-26 20:11:44.144790"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.147284"], ["updated_at", "2020-06-26 20:11:44.147284"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.149162"], ["updated_at", "2020-06-26 20:11:44.149162"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.150771"], ["updated_at", "2020-06-26 20:11:44.150771"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by IssuesController#index as JSON
+Filter chain halted as #<Proc:0x000055ac14726aa8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.158853"], ["updated_at", "2020-06-26 20:11:44.158853"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.160835"], ["updated_at", "2020-06-26 20:11:44.160835"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.162877"], ["updated_at", "2020-06-26 20:11:44.162877"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.164346"], ["updated_at", "2020-06-26 20:11:44.164346"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.165486"], ["updated_at", "2020-06-26 20:11:44.165486"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.166689"], ["updated_at", "2020-06-26 20:11:44.166689"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.167828"], ["updated_at", "2020-06-26 20:11:44.167828"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.1ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.168972"], ["updated_at", "2020-06-26 20:11:44.168972"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.170083"], ["updated_at", "2020-06-26 20:11:44.170083"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.171262"], ["updated_at", "2020-06-26 20:11:44.171262"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/-1" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"-1"}
+Filter chain halted as #<Proc:0x000055ac14726aa8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.180774"], ["updated_at", "2020-06-26 20:11:44.180774"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.182778"], ["updated_at", "2020-06-26 20:11:44.182778"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.184299"], ["updated_at", "2020-06-26 20:11:44.184299"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.185891"], ["updated_at", "2020-06-26 20:11:44.185891"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.187431"], ["updated_at", "2020-06-26 20:11:44.187431"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.188943"], ["updated_at", "2020-06-26 20:11:44.188943"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.190824"], ["updated_at", "2020-06-26 20:11:44.190824"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.193616"], ["updated_at", "2020-06-26 20:11:44.193616"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.196039"], ["updated_at", "2020-06-26 20:11:44.196039"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.198320"], ["updated_at", "2020-06-26 20:11:44.198320"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/-1" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"-1"}
+Filter chain halted as #<Proc:0x000055ac14726aa8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.6ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.206398"], ["updated_at", "2020-06-26 20:11:44.206398"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.209199"], ["updated_at", "2020-06-26 20:11:44.209199"]]
+  [1m[35m (0.8ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.212135"], ["updated_at", "2020-06-26 20:11:44.212135"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.214132"], ["updated_at", "2020-06-26 20:11:44.214132"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.216186"], ["updated_at", "2020-06-26 20:11:44.216186"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.217814"], ["updated_at", "2020-06-26 20:11:44.217814"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.219395"], ["updated_at", "2020-06-26 20:11:44.219395"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.220925"], ["updated_at", "2020-06-26 20:11:44.220925"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.224145"], ["updated_at", "2020-06-26 20:11:44.224145"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.226865"], ["updated_at", "2020-06-26 20:11:44.226865"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/44" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by IssuesController#show as JSON
+  Parameters: {"id"=>"44"}
+Filter chain halted as #<Proc:0x000055ac14726aa8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.234779"], ["updated_at", "2020-06-26 20:11:44.234779"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.236543"], ["updated_at", "2020-06-26 20:11:44.236543"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (17.7ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.238259"], ["updated_at", "2020-06-26 20:11:44.238259"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.8ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.260191"], ["updated_at", "2020-06-26 20:11:44.260191"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.8ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.267025"], ["updated_at", "2020-06-26 20:11:44.267025"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (1.0ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.273391"], ["updated_at", "2020-06-26 20:11:44.273391"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.9ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.280815"], ["updated_at", "2020-06-26 20:11:44.280815"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (3.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.287337"], ["updated_at", "2020-06-26 20:11:44.287337"]]
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (1.0ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.296056"], ["updated_at", "2020-06-26 20:11:44.296056"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.9ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 8], ["title", "Labore ipsa rerum ea."], ["github_id", "sv4lb"], ["created_at", "2020-06-26 20:11:44.301384"], ["updated_at", "2020-06-26 20:11:44.301384"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/54" for 127.0.0.1 at 2020-06-26 17:11:44 -0300
+Processing by IssuesController#show as JSON
+  Parameters: {"id"=>"54"}
+Filter chain halted as #<Proc:0x000055ac14726aa8@/usr/share/rvm/gems/ruby-2.6.1/gems/actionpack-6.0.3.2/lib/action_controller/metal/http_authentication.rb:73> rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 44)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.2ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "issues" DISABLE TRIGGER ALL[0m
+  [1m[35m (23.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (4.9ms)[0m  [1m[34m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE
+            tablename !~ '_prt_' AND
+             tablename <> 'schema_migrations'  AND tablename <> 'ar_internal_metadata'  AND
+            schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35m (3.1ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'octo_event_test'[0m
+  [1m[35m (250.2ms)[0m  [1m[35mTRUNCATE TABLE "public"."events", "public"."issues" RESTART IDENTITY CASCADE;[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "issues" ENABLE TRIGGER ALL[0m
+  [1m[35m (22.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIssue Load (1.0ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 1], ["title", "Veniam id assumenda deserunt."], ["github_id", "1tdck"], ["created_at", "2020-06-26 20:12:21.512778"], ["updated_at", "2020-06-26 20:12:21.512778"]]
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "create"], ["issue_id", 1], ["created_at", "2020-06-26 20:12:21.514504"], ["updated_at", "2020-06-26 20:12:21.514504"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.552684"], ["updated_at", "2020-06-26 20:12:21.552684"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.554794"], ["updated_at", "2020-06-26 20:12:21.554794"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.556527"], ["updated_at", "2020-06-26 20:12:21.556527"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.558186"], ["updated_at", "2020-06-26 20:12:21.558186"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.560231"], ["updated_at", "2020-06-26 20:12:21.560231"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.561978"], ["updated_at", "2020-06-26 20:12:21.561978"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.563551"], ["updated_at", "2020-06-26 20:12:21.563551"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.565423"], ["updated_at", "2020-06-26 20:12:21.565423"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.567387"], ["updated_at", "2020-06-26 20:12:21.567387"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.569991"], ["updated_at", "2020-06-26 20:12:21.569991"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by IssuesController#index as JSON
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.2ms | Allocations: 1575)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.583537"], ["updated_at", "2020-06-26 20:12:21.583537"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.585322"], ["updated_at", "2020-06-26 20:12:21.585322"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.587110"], ["updated_at", "2020-06-26 20:12:21.587110"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.588676"], ["updated_at", "2020-06-26 20:12:21.588676"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.590308"], ["updated_at", "2020-06-26 20:12:21.590308"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.591870"], ["updated_at", "2020-06-26 20:12:21.591870"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.593352"], ["updated_at", "2020-06-26 20:12:21.593352"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.594928"], ["updated_at", "2020-06-26 20:12:21.594928"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.596537"], ["updated_at", "2020-06-26 20:12:21.596537"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.5ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.598209"], ["updated_at", "2020-06-26 20:12:21.598209"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by IssuesController#index as JSON
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues"[0m
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 1465)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.608159"], ["updated_at", "2020-06-26 20:12:21.608159"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.610429"], ["updated_at", "2020-06-26 20:12:21.610429"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.612745"], ["updated_at", "2020-06-26 20:12:21.612745"]]
+  [1m[35m (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.616342"], ["updated_at", "2020-06-26 20:12:21.616342"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.618166"], ["updated_at", "2020-06-26 20:12:21.618166"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.620076"], ["updated_at", "2020-06-26 20:12:21.620076"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.621741"], ["updated_at", "2020-06-26 20:12:21.621741"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.623406"], ["updated_at", "2020-06-26 20:12:21.623406"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.624908"], ["updated_at", "2020-06-26 20:12:21.624908"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.626397"], ["updated_at", "2020-06-26 20:12:21.626397"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/22" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by IssuesController#show as JSON
+  Parameters: {"id"=>"22"}
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 429)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.635563"], ["updated_at", "2020-06-26 20:12:21.635563"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.637286"], ["updated_at", "2020-06-26 20:12:21.637286"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.638819"], ["updated_at", "2020-06-26 20:12:21.638819"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.640320"], ["updated_at", "2020-06-26 20:12:21.640320"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.641852"], ["updated_at", "2020-06-26 20:12:21.641852"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.643474"], ["updated_at", "2020-06-26 20:12:21.643474"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.645706"], ["updated_at", "2020-06-26 20:12:21.645706"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.647672"], ["updated_at", "2020-06-26 20:12:21.647672"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.649248"], ["updated_at", "2020-06-26 20:12:21.649248"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.650814"], ["updated_at", "2020-06-26 20:12:21.650814"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/32" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by IssuesController#show as JSON
+  Parameters: {"id"=>"32"}
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 314)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.659573"], ["updated_at", "2020-06-26 20:12:21.659573"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.661859"], ["updated_at", "2020-06-26 20:12:21.661859"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.664504"], ["updated_at", "2020-06-26 20:12:21.664504"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.666439"], ["updated_at", "2020-06-26 20:12:21.666439"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.668263"], ["updated_at", "2020-06-26 20:12:21.668263"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.669943"], ["updated_at", "2020-06-26 20:12:21.669943"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.671469"], ["updated_at", "2020-06-26 20:12:21.671469"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.673030"], ["updated_at", "2020-06-26 20:12:21.673030"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.674564"], ["updated_at", "2020-06-26 20:12:21.674564"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.4ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.676224"], ["updated_at", "2020-06-26 20:12:21.676224"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/-1" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"-1"}
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", -1], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 224)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.686401"], ["updated_at", "2020-06-26 20:12:21.686401"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.688535"], ["updated_at", "2020-06-26 20:12:21.688535"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.690395"], ["updated_at", "2020-06-26 20:12:21.690395"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.692774"], ["updated_at", "2020-06-26 20:12:21.692774"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.694466"], ["updated_at", "2020-06-26 20:12:21.694466"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.2ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.696095"], ["updated_at", "2020-06-26 20:12:21.696095"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.697628"], ["updated_at", "2020-06-26 20:12:21.697628"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.699169"], ["updated_at", "2020-06-26 20:12:21.699169"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.700731"], ["updated_at", "2020-06-26 20:12:21.700731"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.702285"], ["updated_at", "2020-06-26 20:12:21.702285"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/-1" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by IssuesController#show as HTML
+  Parameters: {"id"=>"-1"}
+  [1m[36mIssue Load (0.3ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."id" = $1 LIMIT $2[0m  [["id", -1], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 217)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (16.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+Started POST "/events" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by EventsController#create as JSON
+  Parameters: {"issue"=>{"number"=>"3", "title"=>nil}, "event"=>{"action"=>"create"}}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIssue Load (0.3ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 3], ["LIMIT", 1]]
+Completed 422 Unprocessable Entity in 5ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1633)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.757728"], ["updated_at", "2020-06-26 20:12:21.757728"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "aut"], ["issue_id", 62], ["created_at", "2020-06-26 20:12:21.760017"], ["updated_at", "2020-06-26 20:12:21.760017"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/7/events" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by EventsController#index as JSON
+  Parameters: {"issue_id"=>"7"}
+  [1m[36mIssue Load (0.3ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."issue_id" = $1[0m  [["issue_id", 62]]
+Completed 200 OK in 34ms (Views: 7.4ms | ActiveRecord: 0.5ms | Allocations: 3841)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mIssue Create (0.3ms)[0m  [1m[32mINSERT INTO "issues" ("number", "title", "github_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["number", 7], ["title", "Voluptates quas magnam doloremque."], ["github_id", "pckh0"], ["created_at", "2020-06-26 20:12:21.802403"], ["updated_at", "2020-06-26 20:12:21.802403"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("action", "issue_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["action", "aut"], ["issue_id", 63], ["created_at", "2020-06-26 20:12:21.804199"], ["updated_at", "2020-06-26 20:12:21.804199"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/issues/7/events" for 127.0.0.1 at 2020-06-26 17:12:21 -0300
+Processing by EventsController#index as JSON
+  Parameters: {"issue_id"=>"7"}
+  [1m[36mIssue Load (0.2ms)[0m  [1m[34mSELECT "issues".* FROM "issues" WHERE "issues"."number" = $1 LIMIT $2[0m  [["number", 7], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."issue_id" = $1[0m  [["issue_id", 63]]
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.5ms | Allocations: 552)
+  [1m[35m (1.5ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
